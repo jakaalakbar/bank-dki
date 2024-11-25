@@ -11,4 +11,5 @@ class Kabupaten extends Model
 
     protected $fillable = ['kode', 'nama', 'kode_provinsi'];
     protected $table = 'kabupatens';
+    public $timestamps = false;
 }

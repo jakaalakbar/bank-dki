@@ -12,6 +12,7 @@ class Pekerjaan extends Model
 
     protected $fillable = ['kode', 'nama'];
     protected $table = 'pekerjaans';
+    public $timestamps = false;
 
     public function rekening(): BelongsTo
     {

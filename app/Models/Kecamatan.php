@@ -11,4 +11,5 @@ class Kecamatan extends Model
 
     protected $fillable = ['kode', 'nama', 'kode_kabupaten'];
     protected $table = 'kecamatans';
+    public $timestamps = false;
 }

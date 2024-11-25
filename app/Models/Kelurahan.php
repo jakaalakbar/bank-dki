@@ -11,4 +11,5 @@ class Kelurahan extends Model
 
     protected $fillable = ['kode', 'nama', 'kode_kecamatan'];
     protected $table = 'kelurahans';
+    public $timestamps = false;
 }

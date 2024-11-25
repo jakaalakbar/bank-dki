@@ -11,4 +11,5 @@ class Provinsi extends Model
 
     protected $fillable = ['kode', 'nama'];
     protected $table = 'provinsis';
+    public $timestamps = false;
 }

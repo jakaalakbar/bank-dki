@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\JenisKelamin;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->string("nama")->unique();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['laki-laki', 'wanita']);
+            $table->string('jenis_kelamin');
             $table->char('pekerjaan', 4);
             $table->timestamps();
         });
