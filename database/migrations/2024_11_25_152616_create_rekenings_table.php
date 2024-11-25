@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\JenisKelamin;
+use App\Enums\StatusPembukaanRekening;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,8 +18,11 @@ return new class extends Migration
             $table->string("nama")->unique();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->string('jenis_kelamin');
+            $table->enum('jenis_kelamin', ['laki-laki', 'wanita']);
             $table->char('pekerjaan', 4);
+            $table->text('alamat');
+            $table->decimal('nominal_setor', 14, 2);
+            $table->enum('status', ['Menunggu', 'Disetujui'])->default('Menunggu');
             $table->timestamps();
         });
     }
