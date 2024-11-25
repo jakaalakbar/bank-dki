@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['laki-laki', 'wanita']);
-            // $table->foreign('pekerjaan');
-            $table->foreign('pekerjaan');
+            $table->char('pekerjaan', 4);
             $table->timestamps();
         });
     }
