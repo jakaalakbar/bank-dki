@@ -9,7 +9,6 @@
     <meta name="author" content="Rachma | @rachmadzii" />
 
     <title>Menarra Finance - Dashboard</title>
-    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
@@ -73,7 +72,7 @@
                     <i class="icon ic-help"></i>
                     Help
                 </a> --}}
-                <a href="#" class="item-menu">
+                <a href="{{ route('logout') }}" class="item-menu">
                     <i class="icon ic-logout"></i>
                     Logout
                 </a>
@@ -191,10 +190,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="assets/js/donut_chart.js"></script>
-<script src="assets/js/line_chart.js"></script> --}}
 
     <script>
         $(document).ready(function() {

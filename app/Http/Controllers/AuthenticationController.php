@@ -54,6 +54,8 @@ class AuthenticationController extends Controller
             $user->is_blocked = false;
             $user->save();
 
+            Auth::login($user);
+
             return redirect()->route('beranda');
         }
 
@@ -66,5 +68,11 @@ class AuthenticationController extends Controller
         }
 
         return redirect()->back()->with('status', 'Email atau password salah!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

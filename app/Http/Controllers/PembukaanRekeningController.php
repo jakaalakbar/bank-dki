@@ -8,13 +8,22 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Pekerjaan;
 use App\Models\Provinsi;
+use App\Models\Rekening;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembukaanRekeningController extends Controller
 {
     public function index()
     {
-        return view('pages.admin.rekening');
+        $rekening = Rekening::join('pekerjaans', 'rekenings.pekerjaan', '=', 'pekerjaans.kode')
+        ->select('rekenings.*', 'pekerjaans.kode', 'pekerjaans.nama as nama_pekerjaan')
+        ->get();
+
+        $role_user = Auth::user()->role_user;
+
+        return view('pages.admin.rekening', compact('rekening', 'role_user'));
     }
 
     public function create()
@@ -26,10 +35,23 @@ class PembukaanRekeningController extends Controller
 
     public function store(Request $request)
     {
-        $alamat = $request->input('provinsi') . ', ' .
-            $request->input('kabupaten') . ', ' .
-            $request->input('kecamatan') . ', ' .
-            $request->input('kelurahan') . ', ' .
+        $provinsi = Provinsi::select('nama')
+        ->where('kode', $request->input('provinsi'))
+        ->first();
+        $kabupaten = Kabupaten::select('nama')
+        ->where('kode', $request->input('kabupaten'))
+        ->first();
+        $kecamatan = Kecamatan::select('nama')
+        ->where('kode', $request->input('kecamatan'))
+        ->first();
+        $kelurahan = Kelurahan::select('nama')
+        ->where('kode', $request->input('kelurahan'))
+        ->first();
+
+        $alamat = $provinsi->nama . ', ' .
+        $kabupaten->nama . ', ' .
+        $kecamatan->nama . ', ' .
+        $kelurahan->nama . ', ' .
             $request->input('nama_jalan');
 
         $values = [
@@ -42,6 +64,19 @@ class PembukaanRekeningController extends Controller
             "nominal_setor" => $request->input('nominal_setor'),
             "status" => StatusPembukaanRekening::MENUNGGU,
         ];
-        return $values;
+        Rekening::create($values);
+        return redirect()->route('rekening');
+    }
+
+    public function approved(Request $request)
+    {
+        $rekening = Rekening::find($request->input('approved'));
+        if ($rekening->status == 'Disetujui') {
+            return redirect()->back()->with('status', 'Status sudah disetujui!');
+        }
+
+        $rekening->status = StatusPembukaanRekening::DISETUJUI;
+        $rekening->save();
+        return redirect()->back();
     }
 }

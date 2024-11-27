@@ -2,6 +2,11 @@
 
 @section('content')
     <section class="mt-3">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -28,21 +33,47 @@
                                 <th scope="col">Pekerjaan</th>
                                 <th scope="col">Alamat</th>
                                 <th scope="col">Nominal Setor</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>Aksi</td>
-                            </tr>
+                            @foreach ($rekening as $item)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->tempat_lahir }}</td>
+                                    <td>{{ $item->tanggal_lahir }}</td>
+                                    <td>{{ $item->jenis_kelamin }}</td>
+                                    <td>{{ $item->nama_pekerjaan }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->nominal_setor }}</td>
+                                    <td>
+                                        @if ($item->status == 'Menunggu')
+                                            <span class="badge text-bg-warning">
+                                                {{ $item->status }}
+                                            </span>
+                                        @endif
+                                        @if ($item->status == 'Disetujui')
+                                            <span class="badge text-bg-success">
+                                                {{ $item->status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($role_user == 'SUPERVISOR' && $item->status == 'menunggu')
+                                            <form action="{{ route('approved') }}" method="post">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="approved" value="{{ $item->id }}">
+                                                <button class="btn btn-outline-primary">
+                                                    Disetujui
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

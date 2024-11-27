@@ -46,18 +46,16 @@
                             </div>
                             <br>
                             <textarea name="nama_jalan" class="form-control" cols="30" rows="2" placeholder="Nama Jalan, RT dan RW"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nominal Setor</label>
-                            <input type="number" name="nominal_setor" class="form-control">
+                            <div class="mb-3">
+                                <label class="form-label">Nominal Setor</label>
+                                <input type="number" name="nominal_setor" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer text-end">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-            </div>
+                <div class="card-footer text-end">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
             </div>
         </form>
     </section>

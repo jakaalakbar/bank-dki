@@ -15,7 +15,7 @@ class LocationDropdown extends Component
     public $kecamatan = [];
     public $kelurahan = [];
 
-    public $PilihProvinsi = null;
+    public $pilihProvinsi = null;
     public $pilihKabupaten = null;
     public $pilihKecamatan = null;
     public $pilihKelurahan = null;
@@ -25,25 +25,25 @@ class LocationDropdown extends Component
         $this->provinsi = Provinsi::all();
     }
 
-    public function updatedPilihProvinsi($provinceId)
+    public function updatedPilihProvinsi($kode_provinsi)
     {
-        $this->kabupaten = Kabupaten::where('kode_provinsi', $provinceId)->get();
-        $this->pilihKabupaten = null; // Reset selected regency
-        $this->kecamatan = []; // Reset districts
-        $this->kelurahan = []; // Reset villages
+        $this->kabupaten = Kabupaten::where('kode_provinsi', $kode_provinsi)->get();
+        $this->pilihKabupaten = null;
+        $this->kecamatan = [];
+        $this->kelurahan = [];
     }
 
-    public function updatedPilihKabupaten($regencyId)
+    public function updatedPilihKabupaten($kode_kabupaten)
     {
-        $this->kecamatan = Kecamatan::where('kode_kabupaten', $regencyId)->get();
-        $this->pilihKecamatan = null; // Reset selected district
-        $this->kelurahan = []; // Reset villages
+        $this->kecamatan = Kecamatan::where('kode_kabupaten', $kode_kabupaten)->get();
+        $this->pilihKecamatan = null;
+        $this->kelurahan = [];
     }
 
-    public function updatedPilihKecamatan($districtId)
+    public function updatedPilihKecamatan($kode_kecamatan)
     {
-        $this->kelurahan = Kelurahan::where('kode_kecamatan', $districtId)->get();
-        $this->pilihKelurahan = null; // Reset selected district
+        $this->kelurahan = Kelurahan::where('kode_kecamatan', $kode_kecamatan)->get();
+        $this->pilihKelurahan = null;
     }
 
     public function render()
