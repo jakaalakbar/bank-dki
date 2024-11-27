@@ -19,26 +19,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::controller(AuthenticationController::class)->group(function () {
     Route::get('/register', 'registerView')->name('register_view');
     Route::post('/register', 'register')->name('register_post');
-
     Route::get('/login', 'loginView')->name('login_view');
     Route::post('/login', 'login')->name('login_post');
-
     Route::get('/logout', 'logout')->name('logout');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::controller(BerandaController::class)->group(function () {
         Route::get('/beranda', 'beranda')->name('beranda');
+        Route::post('/buka-blokir/{id}', 'bukaBlokir')->name('buka_blokir');
     });
 
     Route::controller(PembukaanRekeningController::class)->group(function () {
         Route::get('/rekening', 'index')->name('rekening');
         Route::get('/pembukaan-rekening', 'create')->name('rekening_create');
         Route::post('/pembukaan-rekening', 'store')->name('rekening_store');
-
-        Route::post('/approved', 'approved')->name('approved');
+        Route::post('/approved/{id}', 'approved')->name('approved');
     });
 });

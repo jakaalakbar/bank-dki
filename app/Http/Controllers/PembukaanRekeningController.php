@@ -71,12 +71,17 @@ class PembukaanRekeningController extends Controller
         return redirect()->route('rekening');
     }
 
-    public function approved(Request $request)
+    public function approved(Request $request, $id)
     {
-        $approve = Rekening::find($request->input('approved'));
+        $approve = Rekening::find($id);
+        if (is_null($approve)) {
+            return redirect()->back();
+        }
         if ($approve->status == 'Disetujui') {
             return redirect()->back()->with('status', 'Status sudah disetujui!');
         }
+
+        // update status pengajuan
         $approve->status = StatusPembukaanRekening::DISETUJUI;
         $approve->save();
 

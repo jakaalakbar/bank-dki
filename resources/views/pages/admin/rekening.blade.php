@@ -11,7 +11,7 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <div class="">
-                        <h5>Pembukaan Rekening</h5>
+                        <h6>Pembukaan Rekening</h6>
                     </div>
                     <div class="">
                         <a href="{{ route('rekening_create') }}" class="btn btn-primary">
@@ -62,10 +62,9 @@
                                     </td>
                                     <td>
                                         @if ($role_user == 'SUPERVISOR' && $item->status == 'Menunggu')
-                                            <form action="{{ route('approved') }}" method="post">
+                                            <form action="{{ route('approved', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('POST')
-                                                <input type="hidden" name="approved" value="{{ $item->id }}">
                                                 <button class="btn btn-outline-primary">
                                                     Disetujui
                                                 </button>
@@ -78,7 +77,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer">Footer</div>
         </div>
     </section>
 @endsection

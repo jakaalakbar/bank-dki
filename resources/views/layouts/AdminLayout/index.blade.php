@@ -36,16 +36,20 @@
             </button>
         </div>
         <div class="d-flex justify-content-center mt-md-5 mb-5">
-            <img src="assets/images/logo.svg" alt="Logo" width="140px" height="40px" />
+            {{-- <img src="assets/images/logo.svg" alt="Logo" width="140px" height="40px" /> --}}
         </div>
         <div class="pt-2 d-flex flex-column gap-5">
             <div class="menu p-0">
                 <p>Daily Use</p>
-                <a href="#" class="item-menu active">
+                {{-- <a href="#" class="item-menu">
                     <i class="icon ic-stats"></i>
                     Overview
+                </a> --}}
+                <a href="{{ route('beranda') }}" class="item-menu {{ Request::is('beranda') ? 'active' : '' }}">
+                    <i class="icon ic-account"></i>
+                    User
                 </a>
-                <a href="{{ route('rekening') }}" class="item-menu">
+                <a href="{{ route('rekening') }}" class="item-menu {{ Request::is('rekening') ? 'active' : '' }}">
                     <i class="icon ic-trans"></i>
                     Account
                 </a>
@@ -57,10 +61,7 @@
                     <i class="icon ic-stats"></i>
                     Stats
                 </a> --}}
-                {{-- <a href="#" class="item-menu">
-                    <i class="icon ic-account"></i>
-                    Account
-                </a> --}}
+
             </div>
             <div class="menu">
                 <p>Others</p>

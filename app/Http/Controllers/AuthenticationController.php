@@ -60,6 +60,7 @@ class AuthenticationController extends Controller
         }
 
         if ($user) {
+            // update login attempts
             $user->login_attempts++;
             if ($user->login_attempts >= 3) {
                 $user->is_blocked = true;
