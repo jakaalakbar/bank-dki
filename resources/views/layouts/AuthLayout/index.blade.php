@@ -1,12 +1,31 @@
-@extends('layouts.AuthLayout.index')
+<!doctype html>
+<html lang="en">
 
-@section('content')
-    <div class="container h-100 d-flex justify-content-center align-items-center">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* Mengatur tinggi penuh untuk body dan html */
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    @yield('content')
+    {{-- <div class="container h-100 d-flex justify-content-center align-items-center">
         <div class="card w-50">
             <div class="card-header text-center">
                 <h3>Register Aplikasi</h3>
             </div>
-            <form method="POST" action="{{ route('register_post') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="card-body">
                     <div class="mb-3">
@@ -52,5 +71,10 @@
                 </div>
             </form>
         </div>
-    </div>
-@endsection
+    </div> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

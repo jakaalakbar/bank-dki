@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,13 @@ Route::get('/', function () {
 });
 
 Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/register', 'registerView')->name('register');
-    Route::post('/register', 'register')->name('register');
+    Route::get('/register', 'registerView')->name('register_view');
+    Route::post('/register', 'register')->name('register_post');
+
+    Route::get('/login', 'loginView')->name('login_view');
+    Route::post('/login', 'login')->name('login_post');
+});
+
+Route::controller(BerandaController::class)->group(function () {
+    Route::get('/beranda', 'beranda')->name('beranda');
 });
