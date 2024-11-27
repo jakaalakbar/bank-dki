@@ -42,38 +42,21 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Alamat</label>
-                                <select name="provinsi" class="form-control">
-                                    <option>--Provinsi--</option>
-                                    <option value="laki-laki">Laki-laki</option>
-                                </select>
-                                <br>
-                                <select name="kabupaten" class="form-control">
-                                    <option>--Kabupaten--</option>
-                                    <option value="laki-laki">Laki-laki</option>
-                                </select>
-                                <br>
-                                <select name="kecamatan" class="form-control">
-                                    <option>--Kecamatan--</option>
-                                    <option value="laki-laki">Laki-laki</option>
-                                </select>
-                                <br>
-                                <select name="kelurahan" class="form-control">
-                                    <option>--Kelurahan--</option>
-                                    <option value="laki-laki">Laki-laki</option>
-                                </select>
-                                <br>
-                                <textarea name="nama_jalan" class="form-control" cols="30" rows="2" placeholder="Nama Jalan, RT dan RW"></textarea>
+                                @livewire('location-dropdown')
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Nominal Setor</label>
-                                <input type="number" name="nominal_setor" class="form-control">
-                            </div>
+                            <br>
+                            <textarea name="nama_jalan" class="form-control" cols="30" rows="2" placeholder="Nama Jalan, RT dan RW"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nominal Setor</label>
+                            <input type="number" name="nominal_setor" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
             </div>
             </div>
         </form>

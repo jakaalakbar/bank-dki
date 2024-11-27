@@ -9,20 +9,22 @@
     <meta name="author" content="Rachma | @rachmadzii" />
 
     <title>Menarra Finance - Dashboard</title>
-
+    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- External CSS -->
     <link rel="stylesheet" href="assets/css/styles.css" type="text/css" media="screen" />
 
     <!-- CDN Fontawesome -->
     <script src="https://kit.fontawesome.com/32f82e1dca.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @livewireStyles
+
 </head>
 
 <body>
@@ -102,7 +104,7 @@
                 </div>
             </div>
         </nav>
-         @yield('content')
+        @yield('content')
         {{-- <section class="p-3">
             <header>
                 <h3>Overview</h3>
@@ -186,17 +188,13 @@
     </main>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <script src="assets/js/donut_chart.js"></script>
-    <script src="assets/js/line_chart.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="assets/js/donut_chart.js"></script>
+<script src="assets/js/line_chart.js"></script> --}}
 
     <script>
         $(document).ready(function() {
@@ -206,6 +204,9 @@
             });
         });
     </script>
+    @yield('js')
+    @livewireScripts
+
 </body>
 
 </html>

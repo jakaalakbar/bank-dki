@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PembukaanRekeningController;
 use Illuminate\Support\Facades\Route;
 

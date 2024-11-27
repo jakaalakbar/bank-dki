@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusPembukaanRekening;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Pekerjaan;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class PembukaanRekeningController extends Controller
@@ -35,6 +40,7 @@ class PembukaanRekeningController extends Controller
             "pekerjaan" => $request->input('pekerjaan'),
             "alamat" => $alamat,
             "nominal_setor" => $request->input('nominal_setor'),
+            "status" => StatusPembukaanRekening::MENUNGGU,
         ];
         return $values;
     }
