@@ -39,6 +39,10 @@
                         </thead>
                         <tbody>
                             @foreach ($rekening as $item)
+                                @php
+                                    $formatRupiah = number_format($item->nominal_setor, 0, ',', '.');
+                                    $nominal_setor = 'Rp ' . $formatRupiah;
+                                @endphp
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->nama }}</td>
@@ -47,7 +51,7 @@
                                     <td>{{ $item->jenis_kelamin }}</td>
                                     <td>{{ $item->nama_pekerjaan }}</td>
                                     <td>{{ $item->alamat }}</td>
-                                    <td>{{ $item->nominal_setor }}</td>
+                                    <td>{{ $nominal_setor }}</td>
                                     <td>
                                         @if ($item->status == 'Menunggu')
                                             <span class="badge text-bg-warning">

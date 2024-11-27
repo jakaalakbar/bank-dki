@@ -11,7 +11,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Nama</label>
-                                <input type="email" name="nama" class="form-control">
+                                <input type="text" name="nama" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tempat Lahir</label>

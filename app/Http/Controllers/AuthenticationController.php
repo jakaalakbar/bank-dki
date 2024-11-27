@@ -29,7 +29,7 @@ class AuthenticationController extends Controller
             return redirect()->route('login_view')->with('status', 'Register success!');
         }
 
-        return redirect()->back()->with('status', 'Register failed!');
+        return redirect()->back()->with('error', 'Register failed!');
     }
 
     public function loginView()
@@ -45,7 +45,7 @@ class AuthenticationController extends Controller
         $user = User::where('email', $email)->first();
 
         if ($user && $user->is_blocked) {
-            return redirect()->back()->with('status', 'Akun Anda diblokir!');
+            return redirect()->back()->with('error', 'Akun Anda diblokir!');
         }
 
         if ($user && Hash::check($password, $user->password)) {
@@ -68,7 +68,7 @@ class AuthenticationController extends Controller
             $user->save();
         }
 
-        return redirect()->back()->with('status', 'Email atau password salah!');
+        return redirect()->back()->with('error', 'Email atau password salah!');
     }
 
     public function logout()

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container h-100 d-flex justify-content-center align-items-center">
+
         <div class="card w-50">
             <div class="card-header text-center">
                 <h3>Login Aplikasi</h3>
@@ -22,12 +23,17 @@
                     </div>
                 </div>
                 <div class="card-footer">
+                    <a href="{{ route('register_view') }}">Buat Akun</a>
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
