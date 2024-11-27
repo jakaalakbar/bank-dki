@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\PembukaanRekeningController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,9 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::controller(BerandaController::class)->group(function () {
     Route::get('/beranda', 'beranda')->name('beranda');
+});
+
+Route::controller(PembukaanRekeningController::class)->group(function () {
+    Route::get('/rekening', 'index')->name('rekening');
+    Route::get('/pembukaan-rekening', 'create')->name('rekening_create');
 });
