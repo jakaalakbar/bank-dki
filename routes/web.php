@@ -35,4 +35,5 @@ Route::controller(BerandaController::class)->group(function () {
 Route::controller(PembukaanRekeningController::class)->group(function () {
     Route::get('/rekening', 'index')->name('rekening');
     Route::get('/pembukaan-rekening', 'create')->name('rekening_create');
+    Route::post('/pembukaan-rekening', 'store')->name('rekening_store');
 });

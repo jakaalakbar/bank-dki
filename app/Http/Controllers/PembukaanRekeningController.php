@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 
 class PembukaanRekeningController extends Controller
@@ -13,6 +14,28 @@ class PembukaanRekeningController extends Controller
 
     public function create()
     {
-        return view('pages.admin.create_rekening');
+        $pekerjaan = Pekerjaan::all();
+
+        return view('pages.admin.create_rekening', compact('pekerjaan'));
+    }
+
+    public function store(Request $request)
+    {
+        $alamat = $request->input('provinsi') . ', ' .
+            $request->input('kabupaten') . ', ' .
+            $request->input('kecamatan') . ', ' .
+            $request->input('kelurahan') . ', ' .
+            $request->input('nama_jalan');
+
+        $values = [
+            "nama" => $request->input('nama'),
+            "tempat_lahir" => $request->input('tempat_lahir'),
+            "tanggal_lahir" => $request->input('tanggal_lahir'),
+            "jenis_kelamin" => $request->input('jenis_kelamin'),
+            "pekerjaan" => $request->input('pekerjaan'),
+            "alamat" => $alamat,
+            "nominal_setor" => $request->input('nominal_setor'),
+        ];
+        return $values;
     }
 }
