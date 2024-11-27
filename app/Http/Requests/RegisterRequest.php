@@ -28,10 +28,10 @@ class RegisterRequest extends FormRequest
                 'required',
                 'string',
                 'min:8',
-                'regex:/[A-Z]/',
-                'regex:/[a-z]/',
-                'regex:/[0-9]/',
-                'regex:/[@$!%*?&]/',
+                // 'regex:/[A-Z]/',
+                // 'regex:/[a-z]/',
+                // 'regex:/[0-9]/',
+                // 'regex:/[@$!%*?&]/',
             ],
         ];
     }

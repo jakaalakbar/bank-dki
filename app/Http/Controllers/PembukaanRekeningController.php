@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleUser;
 use App\Enums\StatusPembukaanRekening;
+use App\Mail\SendEmail;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
@@ -12,14 +14,15 @@ use App\Models\Rekening;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PembukaanRekeningController extends Controller
 {
     public function index()
     {
         $rekening = Rekening::join('pekerjaans', 'rekenings.pekerjaan', '=', 'pekerjaans.kode')
-        ->select('rekenings.*', 'pekerjaans.kode', 'pekerjaans.nama as nama_pekerjaan')
-        ->get();
+            ->select('rekenings.*', 'pekerjaans.kode', 'pekerjaans.nama as nama_pekerjaan')
+            ->get();
 
         $role_user = Auth::user()->role_user;
 
@@ -36,22 +39,22 @@ class PembukaanRekeningController extends Controller
     public function store(Request $request)
     {
         $provinsi = Provinsi::select('nama')
-        ->where('kode', $request->input('provinsi'))
-        ->first();
+            ->where('kode', $request->input('provinsi'))
+            ->first();
         $kabupaten = Kabupaten::select('nama')
-        ->where('kode', $request->input('kabupaten'))
-        ->first();
+            ->where('kode', $request->input('kabupaten'))
+            ->first();
         $kecamatan = Kecamatan::select('nama')
-        ->where('kode', $request->input('kecamatan'))
-        ->first();
+            ->where('kode', $request->input('kecamatan'))
+            ->first();
         $kelurahan = Kelurahan::select('nama')
-        ->where('kode', $request->input('kelurahan'))
-        ->first();
+            ->where('kode', $request->input('kelurahan'))
+            ->first();
 
         $alamat = $provinsi->nama . ', ' .
-        $kabupaten->nama . ', ' .
-        $kecamatan->nama . ', ' .
-        $kelurahan->nama . ', ' .
+            $kabupaten->nama . ', ' .
+            $kecamatan->nama . ', ' .
+            $kelurahan->nama . ', ' .
             $request->input('nama_jalan');
 
         $values = [
@@ -70,13 +73,25 @@ class PembukaanRekeningController extends Controller
 
     public function approved(Request $request)
     {
-        $rekening = Rekening::find($request->input('approved'));
-        if ($rekening->status == 'Disetujui') {
+        $approve = Rekening::find($request->input('approved'));
+        if ($approve->status == 'Disetujui') {
             return redirect()->back()->with('status', 'Status sudah disetujui!');
         }
+        $approve->status = StatusPembukaanRekening::DISETUJUI;
+        $approve->save();
 
-        $rekening->status = StatusPembukaanRekening::DISETUJUI;
-        $rekening->save();
+        // send email notification
+        $customer_service = User::where('role_user', RoleUser::CUSTOMER_SERVICE)->get();
+        foreach ($customer_service as $item) {
+            $data = [
+                'subject' => 'Disetujui',
+                'title' => 'Pengajuan Rekening Disetujui',
+                'name' => $approve->nama,
+                'body' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam voluptates esse delectus rerum. Sint cum illo fugiat, aut quibusdam expedita! Illum sequi accusamus delectus numquam facilis sapiente autem, magnam alias?'
+            ];
+            Mail::to($item->email)->send(new SendEmail($data));
+        }
+
         return redirect()->back();
     }
 }

@@ -61,7 +61,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($role_user == 'SUPERVISOR' && $item->status == 'menunggu')
+                                        @if ($role_user == 'SUPERVISOR' && $item->status == 'Menunggu')
                                             <form action="{{ route('approved') }}" method="post">
                                                 @csrf
                                                 @method('POST')
