@@ -44,10 +44,8 @@ class RegisterRequest extends FormRequest
             'name.max' => 'Nama tidak boleh lebih dari 50 karakter.',
             'email.required' => 'Email harus diisi.',
             'email.string' => 'Email harus berupa teks.',
-            'email.max' => 'Email tidak boleh lebih dari 50 karakter.',
             'password.required' => 'Password harus diisi.',
             'password.min' => 'Password tidak boleh kurang dari 8 karakter.',
-            'password.max' => 'Password tidak boleh lebih dari 10 karakter.',
             'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan karakter spesial.',
         ];
     }
