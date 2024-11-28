@@ -77,7 +77,7 @@ class PembukaanRekeningController extends Controller
         if (is_null($approve)) {
             return redirect()->back();
         }
-        if ($approve->status == 'Disetujui') {
+        if ($approve->status == StatusPembukaanRekening::DISETUJUI->value) {
             return redirect()->back()->with('status', 'Status sudah disetujui!');
         }
 
@@ -86,7 +86,7 @@ class PembukaanRekeningController extends Controller
         $approve->save();
 
         // send email notification
-        $customer_service = User::where('role_user', RoleUser::CUSTOMER_SERVICE)->get();
+        $customer_service = User::where('role_user', RoleUser::CUSTOMER_SERVICE->value)->get();
         foreach ($customer_service as $item) {
             $data = [
                 'subject' => 'Disetujui',
